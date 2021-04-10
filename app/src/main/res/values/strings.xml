@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Sudoku</string>
+    <string name="play">"Play"</string>
+    <string name="enter_nickname">Enter Nickname</string>
+    <string name="credits">"Credits"</string>
+    <string name="guide">"Guide"</string>
+    <string name="app_tutorial">BLANK</string>
+    <string name="sudoku_tutorial">Instructions: Each row, column and square needs to be filled out with the numbers 1–9, without repeating any numbers within the row, column or square. Select an empty cell then choose one of the 9 numbers below or X to clear the cell.</string>
+    <string name="creditsText">Sudoku was created by:\n\nGiugioiu Marian\nPasoi Stefan</string>
 </resources>
+
