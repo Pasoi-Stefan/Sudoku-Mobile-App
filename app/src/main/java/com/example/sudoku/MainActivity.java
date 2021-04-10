@@ -34,44 +34,33 @@ public class MainActivity extends AppCompatActivity {
         btnMap = (Button) findViewById(R.id.btnMap);
         textName = (TextView) findViewById(R.id.textName);
         textName.setText(user.getName());
-        btnMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String name = textName.getText().toString();
-                user.setName(name);
-                Log.d(TAG, "onClick: " + user.getName());
-            }
+        btnMap.setOnClickListener(v -> {
+            final String name = textName.getText().toString();
+            user.setName(name);
+            Intent intent = new Intent(MainActivity.this, SudokuActivity.class);
+            Log.d(TAG, "onClick: " + user.getName());
+            intent.putExtra(mainExtra, "Easy");
+            startActivity(intent);
         });
 
         Button btnGuide = (Button) findViewById(R.id.btnGuide);
-        btnGuide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(com.example.sudoku.MainActivity.this, com.example.sudoku.GuideActivity.class);
-                intent.putExtra(com.example.sudoku.GuideActivity.guideExtra, "Main");
-                startActivity(intent);
-            }
+        btnGuide.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, GuideActivity.class);
+            intent.putExtra(GuideActivity.guideExtra, "Main");
+            startActivity(intent);
         });
 
         Button btnCredits = (Button) findViewById(R.id.btnCredits);
-        btnCredits.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(com.example.sudoku.MainActivity.this, CreditsActivity.class);
-                startActivity(intent);
-            }
+        btnCredits.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, CreditsActivity.class);
+            startActivity(intent);
         });
 
         btnReset = (Button) findViewById(R.id.btnReset);
         if(user.isAdminReset()) {
             btnReset.setVisibility(View.VISIBLE);
         }
-        btnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                user.reset();
-            }
-        });
+        btnReset.setOnClickListener(view -> user.reset());
     }
 
 }
