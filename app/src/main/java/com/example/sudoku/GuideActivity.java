@@ -38,27 +38,26 @@ public class GuideActivity extends AppCompatActivity {
             textGuide.setText(R.string.sudoku_tutorial);
             buttonSwitch.setBackground(getResources().getDrawable(R.drawable.ic_back));
         }
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if (origin.equals("Main")) {
-                    intent = new Intent(com.example.sudoku.GuideActivity.this, MainActivity.class);
-                    startActivity(intent);
-                }
+        buttonBack.setOnClickListener(v -> {
+            Intent intent1;
+            if (origin.equals("Main")) {
+                intent1 = new Intent(GuideActivity.this, MainActivity.class);
+                startActivity(intent1);
+            } else {
+                    intent1 = new Intent(GuideActivity.this, SudokuActivity.class);
+                    intent1.putExtra(MainActivity.mainExtra, origin);
+                    startActivity(intent1);
             }
+
         });
-        buttonSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchText = !switchText;
-                if(switchText) {
-                    textGuide.setText(R.string.app_tutorial);
-                    buttonSwitch.setBackground(getResources().getDrawable(R.drawable.ic_next));
-                } else {
-                    textGuide.setText(R.string.sudoku_tutorial);
-                    buttonSwitch.setBackground(getResources().getDrawable(R.drawable.ic_back));
-                }
+        buttonSwitch.setOnClickListener(v -> {
+            switchText = !switchText;
+            if(switchText) {
+                textGuide.setText(R.string.app_tutorial);
+                buttonSwitch.setBackground(getResources().getDrawable(R.drawable.ic_next));
+            } else {
+                textGuide.setText(R.string.sudoku_tutorial);
+                buttonSwitch.setBackground(getResources().getDrawable(R.drawable.ic_back));
             }
         });
     }

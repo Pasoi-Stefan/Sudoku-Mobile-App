@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".CreditsActivity" />
         <activity android:name=".GuideActivity" />
+        <activity android:name=".SudokuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
