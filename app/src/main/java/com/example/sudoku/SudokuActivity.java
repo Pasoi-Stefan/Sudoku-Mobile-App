@@ -1,6 +1,7 @@
 package com.example.sudoku;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -10,12 +11,17 @@ import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.time.LocalTime;
 
 
 public class SudokuActivity extends AppCompatActivity {
 
     private static final String TAG = "SudokuActivity";
+    public static final String sudokuExtra = "com.example.sudoku.Sudoku.EXTRA_TEXT";
+
 
     private Sudoku sudoku;
     private int[][] table;
@@ -32,14 +38,101 @@ public class SudokuActivity extends AppCompatActivity {
     private int xCurrent = 1;
     private int yCurrent = 1;
 
+    private TextView timer;
+    private boolean isPaused = false;
+    private int gameSeconds;
+    private int gameMinutes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sudoku);
         Intent intent = getIntent();
-        difficultyString = intent.getStringExtra(MainActivity.mainExtra);
+        isPaused = false;
+        Log.d(TAG, "onCreate: asd");
+        difficultyString = intent.getStringExtra(sudokuExtra);
         Log.d(TAG, "onCreate: "+difficultyString);
         init();
+    }
+
+    private void showTime(int minutes,int seconds) {
+        String sec = "";
+        if(seconds > 9) {
+            sec = String.valueOf(seconds);
+        }
+        else {
+            sec = "0" + seconds;
+        }
+        timer.setText(minutes + ":" + sec);
+    }
+
+    private void mainTimer() {
+        new android.os.Handler().postDelayed(
+                () -> {
+                    if (!isPaused) {
+                        gameSeconds++;
+                        if (gameSeconds == 60) {
+                            gameMinutes++;
+                            gameSeconds = 0;
+                        }
+                        showTime(gameMinutes, gameSeconds);
+                        mainTimer();
+                    }
+                }, 1000);
+    }
+
+    private void saveTime() {
+        LocalTime time = LocalTime.of(0,gameMinutes,gameSeconds);
+        Log.d(TAG, "saveTime: "+time);
+        MainActivity.user.setCurrentTime(difficultyString,time);
+    }
+
+    private void getTime(){
+        LocalTime time = MainActivity.user.getCurrentTimeDifficulty(difficultyString);
+        Log.d(TAG, "getTime: "+time);
+        gameMinutes = time.getMinute();
+        gameSeconds = time.getSecond();
+    }
+
+    private void updateBest(){
+        LocalTime zeroTime = LocalTime.of(0,0,0);
+        LocalTime currentTime = LocalTime.of(0,gameMinutes,gameSeconds);
+        LocalTime bestTime = MainActivity.user.getTimeDifficulty(difficultyString);
+
+        if(bestTime.compareTo(zeroTime) == 0 || bestTime.compareTo(currentTime) > 0){
+            MainActivity.user.setBestTime(difficultyString,currentTime);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveTime();
+        isPaused = true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        isPaused = true;
+        saveTime();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveTime();
+        Log.d(TAG, "onPause: "+MainActivity.user.getCurrentTimeDifficulty(difficultyString));
+        Log.d(TAG, "onPause: "+"paused");
+        isPaused = true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume: "+"unpaused");
+        isPaused = false;
+        //mainTimer();
     }
 
     private void init() {
@@ -47,14 +140,13 @@ public class SudokuActivity extends AppCompatActivity {
         buttonEmpty = (Button) findViewById(R.id.buttonEmpty);
         buttonBack = (Button) findViewById(R.id.buttonBack);
         buttonHelp = (Button) findViewById(R.id.buttonHelp);
-        buttonHelp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity.user.setSudokuGame(difficultyString, sudoku.getCurrentState());
-                Intent intent = new Intent(SudokuActivity.this, GuideActivity.class);
-                intent.putExtra(GuideActivity.guideExtra, difficultyString);
-                startActivity(intent);
-            }
+        timer = (TextView) findViewById(R.id.Timer);
+        getTime();
+        buttonHelp.setOnClickListener(v -> {
+            MainActivity.user.setSudokuGame(difficultyString, sudoku.getCurrentState());
+            Intent intent = new Intent(SudokuActivity.this, GuideActivity.class);
+            intent.putExtra(GuideActivity.guideExtra, difficultyString);
+            startActivity(intent);
         });
         if(MainActivity.user.checkSudokuGame(difficultyString)){
             sudoku = new Sudoku(MainActivity.user.getSudokuGame(difficultyString));
@@ -149,16 +241,24 @@ public class SudokuActivity extends AppCompatActivity {
         });
 
         buttonBack.setOnClickListener(v -> {
-            Intent intent = new Intent(SudokuActivity.this, MainActivity.class);
+            Intent intent = new Intent(SudokuActivity.this, StatsActivity.class);
+            //Log.d(TAG, "Back: "+difficultyString);
+            //saveTime();
+            intent.putExtra(StatsActivity.statsExtra, difficultyString);
             startActivity(intent);
+            //Navigation.findNavController(SudokuActivity.this,null).navigate(R.id.action_SudokuActivity_to_EasyStatsFragment);
         });
 
         buttonComplete.setOnClickListener(v -> {
             if(sudoku.checkIfSolved() || MainActivity.user.isAdmin()){
+                MainActivity.user.deleteSudokuGame(difficultyString);
+                MainActivity.user.increaseNumber(difficultyString);
+                updateBest();
                 buttonBack.performClick();
             } else {
                 Toast.makeText(SudokuActivity.this, "Incorrect solution", Toast.LENGTH_SHORT).show();
             }
         });
+        mainTimer();
     }
 }
