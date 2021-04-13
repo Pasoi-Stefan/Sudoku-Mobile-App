@@ -2,6 +2,7 @@ package com.example.sudoku;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GuideActivity extends AppCompatActivity {
     public static final String guideExtra = "com.example.sudoku.Guide.EXTRA_TEXT";
+    private static final String TAG = "GuideActivity";
 
     private Button buttonBack;
     private Button buttonSwitch;
@@ -40,12 +42,13 @@ public class GuideActivity extends AppCompatActivity {
         }
         buttonBack.setOnClickListener(v -> {
             Intent intent1;
+            Log.d(TAG, "onCreate: "+origin);
             if (origin.equals("Main")) {
                 intent1 = new Intent(GuideActivity.this, MainActivity.class);
                 startActivity(intent1);
             } else {
                     intent1 = new Intent(GuideActivity.this, SudokuActivity.class);
-                    intent1.putExtra(MainActivity.mainExtra, origin);
+                    intent1.putExtra(SudokuActivity.sudokuExtra, origin);
                     startActivity(intent1);
             }
 

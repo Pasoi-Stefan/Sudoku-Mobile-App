@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/OptionsFragment">
+
+    <fragment
+        android:id="@+id/OptionsFragment"
+        android:name="com.example.sudoku.OptionsFragment"
+        android:label="@string/options_fragment_label"
+        tools:layout="@layout/fragment_options">
+
+        <action
+            android:id="@+id/action_OptionsFragment_to_EasyStatsFragment"
+            app:destination="@id/EasyStatsFragment" />
+        <action
+            android:id="@+id/action_OptionsFragment_to_MediumStatsFragment"
+            app:destination="@id/MediumStatsFragment" />
+        <action
+            android:id="@+id/action_OptionsFragment_to_HardStatsFragment"
+            app:destination="@id/HardStatsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/EasyStatsFragment"
+        android:name="com.example.sudoku.EasyStatsFragment"
+        android:label="@string/easy_stats_fragment_label"
+        tools:layout="@layout/fragment_easy_stats">
+
+        <action
+            android:id="@+id/action_EasyStatsFragment_to_OptionsFragment"
+            app:destination="@id/OptionsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/MediumStatsFragment"
+        android:name="com.example.sudoku.MediumStatsFragment"
+        android:label="@string/medium_stats_fragment_label"
+        tools:layout="@layout/fragment_medium_stats">
+
+        <action
+            android:id="@+id/action_MediumStatsFragment_to_OptionsFragment"
+            app:destination="@id/OptionsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/HardStatsFragment"
+        android:name="com.example.sudoku.HardStatsFragment"
+        android:label="@string/hard_stats_fragment_label"
+        tools:layout="@layout/fragment_hard_stats">
+
+        <action
+            android:id="@+id/action_HardStatsFragment_to_OptionsFragment"
+            app:destination="@id/OptionsFragment" />
+    </fragment>
+</navigation>

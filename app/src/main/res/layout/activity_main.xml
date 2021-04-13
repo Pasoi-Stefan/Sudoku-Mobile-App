@@ -22,7 +22,7 @@
         app:layout_constraintGuide_percent="0.85" />
 
     <Button
-        android:id="@+id/btnMap"
+        android:id="@+id/btnPlay"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#6379F3"
@@ -63,26 +63,6 @@
         app:layout_constraintVertical_bias="0.7"
         app:layout_constraintWidth_percent="0.5" />
 
-    <EditText
-        android:id="@+id/textName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:autoText="false"
-        android:background="#FFFFFF"
-        android:fontFamily="sans-serif-medium"
-        android:hint="@string/enter_nickname"
-        android:inputType="text"
-        android:paddingLeft="7sp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHeight_percent="0.05"
-        app:layout_constraintHorizontal_bias="0.991"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintWidth_percent="0.4" />
 
     <ImageView
         android:id="@+id/imageView"

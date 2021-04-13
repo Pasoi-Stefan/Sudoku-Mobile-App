@@ -7,5 +7,10 @@
     <string name="app_tutorial">BLANK</string>
     <string name="sudoku_tutorial">Instructions: Each row, column and square needs to be filled out with the numbers 1–9, without repeating any numbers within the row, column or square. Select an empty cell then choose one of the 9 numbers below or X to clear the cell.</string>
     <string name="creditsText">Sudoku was created by:\n\nGiugioiu Marian\nPasoi Stefan</string>
+    <string name="options_fragment_label">Options Fragment</string>
+    <string name="easy_stats_fragment_label">EasyStats Fragment</string>
+    <string name="medium_stats_fragment_label">MediumStats Fragment</string>
+    <string name="hard_stats_fragment_label">HardStats Fragment</string>
+    <string name="sudoku_activity_label">Sudoku Activity</string>
 </resources>
 
