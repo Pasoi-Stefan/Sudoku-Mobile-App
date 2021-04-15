@@ -13,4 +13,10 @@
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
+    <color name="GeneralButtonColor">#6379F3</color>
+    <color name="BackgroundColorSudoku">#3DDC84</color>
+    <color name="TransparentGray">#00512E2E</color>
+    <color name="SemiTransparentGray">#BE512E2E</color>
+    <color name="BackgroundColorStats">#AE1616</color>
+    <color name="StatsTextColor">#F3F373</color>
 </resources>

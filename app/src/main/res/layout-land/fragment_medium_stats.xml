@@ -19,13 +19,13 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="300dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="375dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="22dp"
         android:background="@color/BackgroundColorStats"
         app:layout_constraintEnd_toEndOf="@+id/textview_first"
         app:layout_constraintStart_toStartOf="@+id/textview_first"
@@ -33,8 +33,8 @@
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="79dp"
-            android:layout_height="33dp"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:fontFamily="sans-serif-black"
@@ -46,8 +46,8 @@
 
         <TextView
             android:id="@+id/textNumberMedium"
-            android:layout_width="111dp"
-            android:layout_height="33dp"
+            android:layout_width="140dp"
+            android:layout_height="25dp"
             android:layout_marginStart="32dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
@@ -59,8 +59,8 @@
 
         <TextView
             android:id="@+id/textView1"
-            android:layout_width="79dp"
-            android:layout_height="33dp"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:fontFamily="sans-serif-black"
@@ -72,8 +72,8 @@
 
         <TextView
             android:id="@+id/textTimeMedium"
-            android:layout_width="111dp"
-            android:layout_height="33dp"
+            android:layout_width="140dp"
+            android:layout_height="25dp"
             android:layout_marginStart="32dp"
             android:fontFamily="sans-serif-black"
             android:gravity="center"
@@ -88,7 +88,7 @@
         android:id="@+id/button_restartMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/GeneralButtonColor"
         android:text="Start New Medium Game"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout2"
@@ -99,7 +99,7 @@
         android:id="@+id/button_continueMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/GeneralButtonColor"
         android:text="Continue Medium Game"
         android:visibility="invisible"
@@ -114,11 +114,9 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/GeneralButtonColor"
         android:text="back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_restartMedium"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.95" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_continueMedium" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
