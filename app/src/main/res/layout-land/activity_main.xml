@@ -22,11 +22,11 @@
         app:layout_constraintGuide_percent="0.75" />
 
     <Button
-        android:id="@+id/btnMap"
+        android:id="@+id/btnPlay"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#6379F3"
-        android:backgroundTint="#6379F3"
+        android:background="@color/GeneralButtonColor"
+        android:backgroundTint="@color/GeneralButtonColor"
         android:drawableStart="@android:drawable/ic_media_play"
         android:fontFamily="sans-serif-medium"
         android:isScrollContainer="false"
@@ -44,8 +44,8 @@
         android:id="@+id/btnGuide"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#6379F3"
-        android:backgroundTint="#6379F3"
+        android:background="@color/GeneralButtonColor"
+        android:backgroundTint="@color/GeneralButtonColor"
         android:drawableStart="@android:drawable/ic_menu_sort_alphabetically"
         android:fontFamily="sans-serif-medium"
         android:paddingRight="25sp"
@@ -57,27 +57,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75"
-        app:layout_constraintWidth_percent="0.3" />
-
-    <EditText
-        android:id="@+id/textName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:autoText="false"
-        android:background="#FFFFFF"
-        android:fontFamily="sans-serif-medium"
-        android:hint="@string/enter_nickname"
-        android:inputType="text"
-        android:paddingLeft="7sp"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintHeight_percent="0.07"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52"
         app:layout_constraintWidth_percent="0.3" />
 
     <ImageView
@@ -92,14 +71,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1"
         app:layout_constraintWidth_percent="0.5"
+        android:src="@drawable/sudoku"
         tools:srcCompat="@tools:sample/avatars[2]" />
 
     <Button
         android:id="@+id/btnCredits"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#6379F3"
-        android:backgroundTint="#6379F3"
+        android:background="@color/GeneralButtonColor"
+        android:backgroundTint="@color/GeneralButtonColor"
         android:drawableStart="@android:drawable/btn_star_big_on"
         android:fontFamily="sans-serif-medium"
         android:paddingRight="25sp"
