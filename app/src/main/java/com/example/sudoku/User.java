@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class User {
     private static final String TAG = "User";
     private String name;
-    private boolean admin = true;
+    private boolean admin = false;
     private boolean adminReset = true;
     private HashMap<String,int[][][]> sudokuGames;
     private HashMap<String,Integer> numberGamesDifficulty;
@@ -184,7 +184,6 @@ public class User {
         sudokuGames.put(name,Table);
 
         String array = g.toJson(Table);
-        //Log.d(TAG, "setSudokuGame for region " + name + ": " + array);
         editor.putString(name + "Sudoku", array);
         editor.apply();
     }

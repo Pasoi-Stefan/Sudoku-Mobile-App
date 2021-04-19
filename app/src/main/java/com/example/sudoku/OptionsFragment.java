@@ -2,10 +2,12 @@ package com.example.sudoku;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -54,6 +56,8 @@ public class OptionsFragment extends Fragment {
             // create the popup window
             int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
             int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+            ConstraintLayout layout = view.findViewById(R.id.constraint);
+            layout.setForeground(new ColorDrawable(ContextCompat.getColor(getContext(), R.color.SemiTransparentGray)));
             boolean focusable = true; // lets taps outside the popup also dismiss it
             final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
             popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
@@ -70,6 +74,10 @@ public class OptionsFragment extends Fragment {
                     textName.setText(userName);
                     popupWindow.dismiss();
                 }
+            });
+
+            popupWindow.setOnDismissListener(() -> {
+                layout.setForeground(new ColorDrawable(ContextCompat.getColor(getContext(), R.color.TransparentGray)));
             });
         });
 
