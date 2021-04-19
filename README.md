@@ -1,1 +1,3 @@
-"# sudoku-mobile-app" 
+# sudoku-mobile-app
+
+An app for the classic Sudoku game
