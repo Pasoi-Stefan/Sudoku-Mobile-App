@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +16,7 @@ public class GuideActivity extends AppCompatActivity {
     private Button buttonBack;
     private Button buttonSwitch;
     public boolean switchText;
-    private TextViewWithImages textGuide;
+    private TextView textGuide;
     private String origin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class GuideActivity extends AppCompatActivity {
 
         buttonBack = (Button) findViewById(R.id.backButton);
         buttonSwitch = (Button) findViewById(R.id.buttonSwitch);
-        textGuide = findViewById(R.id.textViewGuide);
+        textGuide = (TextView) findViewById(R.id.textViewGuide);
         if(switchText) {
             textGuide.setText(R.string.app_tutorial);
             buttonSwitch.setBackground(getResources().getDrawable(R.drawable.ic_next));

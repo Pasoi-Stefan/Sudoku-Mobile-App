@@ -4,8 +4,8 @@
     <string name="enter_nickname">Enter Nickname</string>
     <string name="credits">"Credits"</string>
     <string name="guide">"Guide"</string>
-    <string name="app_tutorial">BLANK</string>
-    <string name="sudoku_tutorial">Instructions: Each row, column and square needs to be filled out with the numbers 1–9, without repeating any numbers within the row, column or square. Select an empty cell then choose one of the 9 numbers below or X to clear the cell.</string>
+    <string name="app_tutorial">Welcome to Sudoku, a classic for any puzzle enthusiast.\n First, you must enter a username, which you can change at any time.\n You will be directed to the options screen where you can find the number of games you have completed and your player level.\n From here you can choose the game difficulty.\n Each difficulty contains a screen with the number of games completed for that difficulty and your best time.\n You will have the option to start a new game or continue the previous one.\n On the Sudoku screen, there will be a timer used to count how much time you spent on that game.\n From here you can press \'Help\' to read the tutorial.</string>
+    <string name="sudoku_tutorial">Instructions:\n Each row, column and square needs to be filled out with the numbers 1–9, without repeating any numbers within the row, column or square.\n Select an empty cell then choose one of the 9 numbers below or X to clear the cell.\n If the chosen number is according to the said rules, then its color will be blue, otherwise it will be red and will not be saved in the progress.\n At any point, you can check if your solution is correct by pressing the \'Complete Game\' button.</string>
     <string name="creditsText">Sudoku was created by:\n\nGiugioiu Marian\nPasoi Stefan</string>
     <string name="options_fragment_label">Options Fragment</string>
     <string name="easy_stats_fragment_label">EasyStats Fragment</string>

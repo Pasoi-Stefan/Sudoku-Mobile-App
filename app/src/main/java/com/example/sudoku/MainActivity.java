@@ -1,6 +1,8 @@
 package com.example.sudoku;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -49,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
                 // create the popup window
                 int width = ConstraintLayout.LayoutParams.WRAP_CONTENT;
                 int height = ConstraintLayout.LayoutParams.WRAP_CONTENT;
+                ConstraintLayout layout = findViewById(R.id.constraint);
+                layout.setForeground(new ColorDrawable(ContextCompat.getColor(MainActivity.this, R.color.SemiTransparentGray)));
                 boolean focusable = true; // lets taps outside the popup also dismiss it
                 final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
@@ -67,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "onClick: " + user.getName());
                         startActivity(intent);
                     }
+                });
+
+                popupWindow.setOnDismissListener(() -> {
+                    layout.setForeground(new ColorDrawable(ContextCompat.getColor(MainActivity.this, R.color.TransparentGray)));
                 });
             } else {
                 Intent intent = new Intent(MainActivity.this, StatsActivity.class);

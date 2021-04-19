@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.BlendMode;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -132,7 +135,6 @@ public class SudokuActivity extends AppCompatActivity {
         super.onResume();
         Log.d(TAG, "onResume: "+"unpaused");
         isPaused = false;
-        //mainTimer();
     }
 
     private void init() {
@@ -187,7 +189,11 @@ public class SudokuActivity extends AppCompatActivity {
                 String stringID = "buttonSudoku" + (i + 1) + (j + 1);
                 int ID = SudokuActivity.this.getResources().getIdentifier(stringID, "id", SudokuActivity.this.getPackageName());
                 buttonsSudoku[i][j] = (Button) findViewById(ID);
+
                 if(table[i][j]!=0) {
+                    if(tableUnsolved[i][j]==0)
+                        buttonsSudoku[i][j].setTextColor(getApplication().getResources().getColor(R.color.blue));
+
                     String string = String.valueOf(table[i][j]);
                     SpannableStringBuilder builder = new SpannableStringBuilder(string);
                     builder.setSpan(new StyleSpan(Typeface.BOLD), 0, string.length(), 0);
@@ -202,6 +208,24 @@ public class SudokuActivity extends AppCompatActivity {
                 buttonsSudoku[i][j].setOnClickListener(v -> {
                     xCurrent= finalI;
                     yCurrent= finalJ;
+
+                    for(int l = 0; l < 9; l++)
+                        for(int c = 0; c < 9; c++)
+                            buttonsSudoku[l][c].setBackgroundTintList(null);
+
+                    int highlightColor = getColor(R.color.BackgroundColorSudoku);
+
+                    for (int k = 0; k < 9; k++){
+                        buttonsSudoku[finalI][k].setBackgroundTintList(ColorStateList.valueOf(highlightColor));
+                        buttonsSudoku[k][finalJ].setBackgroundTintList(ColorStateList.valueOf(highlightColor));
+                    }
+
+                    for (int l = (finalI / 3) * 3; l < (finalI / 3) * 3 + 3; l++)
+                        for (int c = (finalJ / 3) * 3; c < (finalJ / 3) * 3 + 3; c++)
+                            buttonsSudoku[l][c].setBackgroundTintList(ColorStateList.valueOf(highlightColor));
+
+                    int selectColor = getColor(R.color.SelectColor);
+                    buttonsSudoku[finalI][finalJ].setBackgroundTintList(ColorStateList.valueOf(selectColor));
                 });
             }
         }
@@ -220,10 +244,7 @@ public class SudokuActivity extends AppCompatActivity {
                         table[xCurrent][yCurrent] = digit;
                         sudoku.setElement(xCurrent, yCurrent, digit);
                         MainActivity.user.setSudokuGame(difficultyString, sudoku.getCurrentState());
-                        buttonsSudoku[xCurrent][yCurrent].setTextColor(getApplication().getResources().getColor(R.color.black));
-                        if (sudoku.checkIfSolved()) {
-                            buttonComplete.performClick();
-                        }
+                        buttonsSudoku[xCurrent][yCurrent].setTextColor(getApplication().getResources().getColor(R.color.blue));
                     } else {
                         buttonsSudoku[xCurrent][yCurrent].setTextColor(getApplication().getResources().getColor(R.color.red));
                     }
