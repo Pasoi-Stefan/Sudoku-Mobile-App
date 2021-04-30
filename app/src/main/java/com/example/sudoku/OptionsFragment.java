@@ -1,13 +1,17 @@
 package com.example.sudoku;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,13 +19,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class OptionsFragment extends Fragment {
     private static final String TAG = "OptionsFragment";
+    private static final int IMAGE_PICK_CODE = 1000;
+    private static final int PERMISSION_CODE = 1001;
 
     private TextView textNumber;
     private TextView textStatus;
@@ -30,6 +39,8 @@ public class OptionsFragment extends Fragment {
     private TextView textWaring;
     private Button btnDone;
     private Button buttonChangeName;
+    private ImageView imageViewProfile;
+    private Button buttonPicture;
 
     @Override
     public View onCreateView(
@@ -81,6 +92,23 @@ public class OptionsFragment extends Fragment {
             });
         });
 
+        imageViewProfile = (ImageView) view.findViewById(R.id.imageViewProfile);
+        buttonPicture = (Button) view.findViewById(R.id.buttonPicture);
+
+        buttonPicture.setOnClickListener(view1 -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (getContext().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                        == PackageManager.PERMISSION_DENIED) {
+                    String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                    requestPermissions(permissions, PERMISSION_CODE);
+                } else {
+                    pickImageFromGallery();
+                }
+            } else {
+                pickImageFromGallery();
+            }
+        });
+
         view.findViewById(R.id.button_easy).setOnClickListener(view1 -> NavHostFragment.findNavController(OptionsFragment.this)
                 .navigate(R.id.action_OptionsFragment_to_EasyStatsFragment));
         view.findViewById(R.id.button_medium).setOnClickListener(view1 -> NavHostFragment.findNavController(OptionsFragment.this)
@@ -92,5 +120,31 @@ public class OptionsFragment extends Fragment {
             Intent intent = new Intent(getContext(), MainActivity.class);
             startActivity(intent);
         });
+    }
+
+    private void pickImageFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    pickImageFromGallery();
+                } else {
+                    Toast.makeText(getContext(), "Permission denied", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
+            imageViewProfile.setImageURI(data.getData());
+        }
     }
 }
