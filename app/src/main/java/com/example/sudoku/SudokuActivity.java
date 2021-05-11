@@ -92,7 +92,7 @@ public class SudokuActivity extends AppCompatActivity {
 
     private void getTime(){
         LocalTime time = MainActivity.user.getCurrentTimeDifficulty(difficultyString);
-        Log.d(TAG, "getTime: "+time);
+//        Log.d(TAG, "getTime: "+time);
         gameMinutes = time.getMinute();
         gameSeconds = time.getSecond();
     }
@@ -149,7 +149,9 @@ public class SudokuActivity extends AppCompatActivity {
             Intent intent = new Intent(SudokuActivity.this, GuideActivity.class);
             intent.putExtra(GuideActivity.guideExtra, difficultyString);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
+        Log.d(TAG, String.valueOf(MainActivity.user == null));
         if(MainActivity.user.checkSudokuGame(difficultyString)){
             sudoku = new Sudoku(MainActivity.user.getSudokuGame(difficultyString));
             Log.d(TAG, "init: was created");
@@ -267,6 +269,7 @@ public class SudokuActivity extends AppCompatActivity {
             //saveTime();
             intent.putExtra(StatsActivity.statsExtra, difficultyString);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
             //Navigation.findNavController(SudokuActivity.this,null).navigate(R.id.action_SudokuActivity_to_EasyStatsFragment);
         });
 

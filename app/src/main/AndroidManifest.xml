@@ -16,7 +16,7 @@
             android:enabled="true"
             android:exported="false"></receiver>
 
-        <activity android:name=".ChallengeActivity" />
+        <activity android:name=".ChallengeActivity"/>
         <activity android:name=".StatsActivity" />
         <activity android:name=".CreditsActivity" />
         <activity android:name=".GuideActivity" />

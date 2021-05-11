@@ -18,6 +18,7 @@ public class CreditsActivity extends AppCompatActivity {
         buttonBack.setOnClickListener(v -> {
             Intent intent = new Intent(CreditsActivity.this, MainActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
         });
     }
 }

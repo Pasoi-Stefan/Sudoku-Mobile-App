@@ -33,6 +33,7 @@ public class ChallengeActivity extends AppCompatActivity {
 
     private ToggleButton alarmToggle;
     private Button buttonChallenge;
+    private Button buttonBack;
     private TextView textStatus;
 
     @Override
@@ -44,6 +45,7 @@ public class ChallengeActivity extends AppCompatActivity {
 
         alarmToggle= findViewById(R.id.alarmToggle);
         buttonChallenge = (Button) findViewById(R.id.buttonGoToChallenge);
+        buttonBack = (Button) findViewById(R.id.button_back);
         textStatus = (TextView) findViewById(R.id.textChallengeStatus);
         textStatus.setText(MainActivity.user.getChallengeCompleted());
         if(MainActivity.user.getChallengeCompleted().equals("NotStarted") || MainActivity.user.getChallengeCompleted().equals("InProgress")){
@@ -70,6 +72,13 @@ public class ChallengeActivity extends AppCompatActivity {
             Intent intent = new Intent(ChallengeActivity.this, SudokuActivity.class);
             intent.putExtra(SudokuActivity.sudokuExtra, difficulty);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
+        });
+
+        buttonBack.setOnClickListener(v -> {
+            Intent intent = new Intent(ChallengeActivity.this, StatsActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
         });
 
         Intent notifyIntent = new Intent(this, AlarmReceiver.class);
@@ -87,8 +96,6 @@ public class ChallengeActivity extends AppCompatActivity {
             long triggerTime = SystemClock.elapsedRealtime()
                     + repeatInterval;
             Log.d(TAG, "onCheckedChanged: " + triggerTime);
-            // If the Toggle is turned on, set the repeating alarm with
-            // a 15 minute interval.
             if (alarmManager != null) {
                 alarmManager.setRepeating
                         (AlarmManager.RTC_WAKEUP,
@@ -109,8 +116,6 @@ public class ChallengeActivity extends AppCompatActivity {
                         long triggerTime = SystemClock.elapsedRealtime()
                                 + repeatInterval;
                         Log.d(TAG, "onCheckedChanged: " + triggerTime);
-                        // If the Toggle is turned on, set the repeating alarm with
-                        // a 15 minute interval.
                         if (alarmManager != null) {
                             alarmManager.setRepeating
                                     (AlarmManager.RTC_WAKEUP,
@@ -146,8 +151,6 @@ public class ChallengeActivity extends AppCompatActivity {
         mNotificationManager =
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-        // Notification channels are only available in OREO and higher.
-        // So, add a check on SDK version.
         if (android.os.Build.VERSION.SDK_INT >=
                 android.os.Build.VERSION_CODES.O) {
 

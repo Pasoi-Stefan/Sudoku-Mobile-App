@@ -29,9 +29,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
 
     private void deliverNotification(Context context) {
-        // Create the content intent for the notification, which launches
-        // this activity
-
         MainActivity.user.setChalengeCompleted("NotStarted");
         Intent contentIntent = new Intent(context, ChallengeActivity.class);
 

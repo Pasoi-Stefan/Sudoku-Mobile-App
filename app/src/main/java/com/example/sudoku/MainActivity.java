@@ -1,7 +1,6 @@
 package com.example.sudoku;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,8 +8,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -81,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, StatsActivity.class);
                 Log.d(TAG, "onClick: " + user.getName());
                 startActivity(intent);
+                overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
             }
         });
 
@@ -89,12 +87,14 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, GuideActivity.class);
             intent.putExtra(GuideActivity.guideExtra, "Main");
             startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
 
         Button btnCredits = (Button) findViewById(R.id.btnCredits);
         btnCredits.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, CreditsActivity.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
 
         btnReset = (Button) findViewById(R.id.btnReset);
