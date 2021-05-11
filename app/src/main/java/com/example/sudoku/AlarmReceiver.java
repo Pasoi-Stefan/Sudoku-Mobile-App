@@ -31,17 +31,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     private void deliverNotification(Context context) {
         // Create the content intent for the notification, which launches
         // this activity
-        String level = MainActivity.user.status();
-        String difficulty = "";
 
-        if (level.equals("Beginner")){
-            difficulty = "Easy";
-        } else if (level.equals("Intermediate")){
-            difficulty = "Medium";
-        } else if (level.equals("Advanced")){
-            difficulty = "Hard";
-        }
-        MainActivity.user.deleteSudokuGame(difficulty);
         MainActivity.user.setChalengeCompleted("NotStarted");
         Intent contentIntent = new Intent(context, ChallengeActivity.class);
 

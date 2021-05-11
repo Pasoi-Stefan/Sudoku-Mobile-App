@@ -79,6 +79,25 @@ public class ChallengeActivity extends AppCompatActivity {
         final PendingIntent notifyPendingIntent = PendingIntent.getBroadcast
                 (this, NOTIFICATION_ID, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         final AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        if (alarmToggle.isChecked()){
+            String toastMessage;
+            long repeatInterval = 5000;
+
+
+            long triggerTime = SystemClock.elapsedRealtime()
+                    + repeatInterval;
+            Log.d(TAG, "onCheckedChanged: " + triggerTime);
+            // If the Toggle is turned on, set the repeating alarm with
+            // a 15 minute interval.
+            if (alarmManager != null) {
+                alarmManager.setRepeating
+                        (AlarmManager.RTC_WAKEUP,
+                                SystemClock.elapsedRealtime() + 5000, 5000,
+                                notifyPendingIntent);
+            }
+            // Set the toast message for the "on" case.
+            toastMessage = "Notification on";
+        }
         alarmToggle.setOnCheckedChangeListener(
                 (compoundButton, isChecked) -> {
                     String toastMessage;
