@@ -48,7 +48,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="300dp"
         android:layout_height="128dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="196dp"
         android:background="@color/BackgroundColorStats"
         app:layout_constraintEnd_toEndOf="@+id/buttonChangeName"
         app:layout_constraintHorizontal_bias="0.464"
@@ -121,13 +121,13 @@
         android:id="@+id/textChooseDifficulty"
         android:layout_width="145dp"
         android:layout_height="39dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="68dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:text="Choose Difficulty"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
@@ -194,5 +194,14 @@
         app:layout_constraintEnd_toEndOf="@+id/imageViewProfile"
         app:layout_constraintStart_toStartOf="@+id/imageViewProfile"
         app:layout_constraintTop_toBottomOf="@+id/imageViewProfile" />
+
+    <Button
+        android:id="@+id/buttonChallenge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Challenges"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

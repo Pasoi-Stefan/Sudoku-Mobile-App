@@ -41,6 +41,19 @@ public class MediumStatsFragment extends Fragment {
         buttonContinueGame = (Button) view.findViewById(R.id.button_continueMedium);
 
         view.findViewById(R.id.button_restartMedium).setOnClickListener(v ->{
+            String level = MainActivity.user.status();
+            String difficultyM = "";
+
+            if (level.equals("Beginner")){
+                difficultyM = "Easy";
+            } else if (level.equals("Intermediate")){
+                difficultyM = "Medium";
+            } else if (level.equals("Advanced")){
+                difficultyM= "Hard";
+            }
+            if (MainActivity.user.getChallengeCompleted().equals("InProgress") && difficultyM.equals(difficulty)){
+                MainActivity.user.setChalengeCompleted("Aborted");
+            }
             MainActivity.user.deleteSudokuGame(difficulty);
             buttonContinueGame.setVisibility(View.INVISIBLE);
             Intent intent = new Intent(getContext(), SudokuActivity.class);

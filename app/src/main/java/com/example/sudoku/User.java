@@ -3,10 +3,10 @@ package com.example.sudoku;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.util.Log;
 
 import com.google.gson.Gson;
-
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,14 +15,16 @@ import java.util.HashMap;
 public class User {
     private static final String TAG = "User";
     private String name;
-    private boolean admin = false;
+    private boolean admin = true;
     private boolean adminReset = true;
     private HashMap<String,int[][][]> sudokuGames;
     private HashMap<String,Integer> numberGamesDifficulty;
     private HashMap<String, LocalTime> bestTimes;
     private HashMap<String, LocalTime> currentTimes;
     private Integer numberGames;
+    private String profilePicture;
     private SharedPreferences.Editor editor;
+    private String chalengeCompleted;
     Gson g;
 
     public User(Activity context) {
@@ -35,6 +37,8 @@ public class User {
         this.name = sharedPreferences.getString("name", "");
         Log.d(TAG, "Name: " + this.name);
 
+        this.chalengeCompleted = sharedPreferences.getString("ChallengeCompleted", "");
+
         this.numberGames = g.fromJson(sharedPreferences.getString("Number", ""), Integer.class);
 
         this.sudokuGames = new HashMap<>();
@@ -43,6 +47,10 @@ public class User {
         this.currentTimes = new HashMap<>();
 
         ArrayList<String> difficulties = new ArrayList<>(Arrays.asList("Easy", "Medium", "Hard"));
+        Log.d(TAG, "ProfilePicture: " + sharedPreferences.getString("profilePicture", ""));
+
+        this.profilePicture = sharedPreferences.getString("profilePicture", "");
+        Log.d(TAG, "User: " + this.profilePicture);
 
         for (String difficulty : difficulties) {
             if (sharedPreferences.contains(difficulty + "Sudoku")) {
@@ -87,8 +95,32 @@ public class User {
         editor.apply();
     }
 
+    public void setChalengeCompleted(String completed){
+        this.chalengeCompleted = completed;
+        Log.d(TAG, "ChallengeCompleted: "+ completed);
+        editor.putString("ChallengeCompleted", completed);
+        editor.apply();
+    }
+    public String getChallengeCompleted(){
+        return this.chalengeCompleted;
+    }
+
+    public void setProfilePicture(String picture) {
+        this.profilePicture = picture;
+        Log.d(TAG, "setProfilePicture: "+ picture);
+        editor.putString("profilePicture", picture);
+        editor.apply();
+    }
+
+    public String getProfilePicture(){
+        Log.d(TAG, "getProfilePicture: " + this.profilePicture);
+        return this.profilePicture;
+    }
+
     public void initStats(){
         this.numberGames = 0;
+        this.chalengeCompleted = "NotStarted";
+        editor.putString("ChallengeCompleted", "NotStarted");
         editor.putString("Number",g.toJson(0));
         this.bestTimes = new HashMap<>();
         this.numberGamesDifficulty = new HashMap<>();
@@ -118,6 +150,8 @@ public class User {
         editor.putString(name + "TimeCurrent",g.toJson(time));
         editor.apply();
     }
+
+
 
     public void increaseNumber(String name){
         Integer currentNumber = this.numberGamesDifficulty.get(name);

@@ -274,6 +274,20 @@ public class SudokuActivity extends AppCompatActivity {
             if(sudoku.checkIfSolved() || MainActivity.user.isAdmin()){
                 MainActivity.user.deleteSudokuGame(difficultyString);
                 MainActivity.user.increaseNumber(difficultyString);
+                String level = MainActivity.user.status();
+                String difficultyM = "";
+
+                if (level.equals("Beginner")){
+                    difficultyM = "Easy";
+                } else if (level.equals("Intermediate")){
+                    difficultyM = "Medium";
+                } else if (level.equals("Advanced")){
+                    difficultyM= "Hard";
+                }
+                Log.d(TAG, "difficulty: " + difficultyM.equals(difficultyString));
+                if (MainActivity.user.getChallengeCompleted().equals("InProgress") && difficultyM.equals(difficultyString)){
+                    MainActivity.user.setChalengeCompleted("Completed");
+                }
                 updateBest();
                 buttonBack.performClick();
             } else {
