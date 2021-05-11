@@ -12,5 +12,7 @@
     <string name="medium_stats_fragment_label">MediumStats Fragment</string>
     <string name="hard_stats_fragment_label">HardStats Fragment</string>
     <string name="sudoku_activity_label">Sudoku Activity</string>
+    <string name="alarm_off">Turn alarm On</string>
+    <string name="alarm_on">Turn alarm Off</string>
 </resources>
 

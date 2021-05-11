@@ -16,10 +16,10 @@
         android:text="Welcome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.038" />
 
     <TextView
         android:id="@+id/textName"
@@ -48,9 +48,10 @@
         android:id="@+id/constraintLayout"
         android:layout_width="300dp"
         android:layout_height="128dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="196dp"
         android:background="@color/BackgroundColorStats"
         app:layout_constraintEnd_toEndOf="@+id/buttonChangeName"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="@+id/buttonChangeName"
         app:layout_constraintTop_toBottomOf="@+id/buttonChangeName">
 
@@ -120,13 +121,13 @@
         android:id="@+id/textChooseDifficulty"
         android:layout_width="145dp"
         android:layout_height="39dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="68dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
         android:text="Choose Difficulty"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
@@ -172,5 +173,35 @@
         app:layout_constraintStart_toStartOf="@+id/button_easy"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.95" />
+
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="114dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/buttonChangeName"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/buttonChangeName"
+        app:layout_constraintTop_toBottomOf="@+id/buttonChangeName"
+        tools:src="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/buttonPicture"
+        android:layout_width="102dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
+        android:text="Change Profile Picture"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewProfile"
+        app:layout_constraintStart_toStartOf="@+id/imageViewProfile"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewProfile" />
+
+    <Button
+        android:id="@+id/buttonChallenge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Challenges"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
