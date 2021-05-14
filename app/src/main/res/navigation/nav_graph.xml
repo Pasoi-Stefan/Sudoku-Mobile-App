@@ -13,13 +13,19 @@
 
         <action
             android:id="@+id/action_OptionsFragment_to_EasyStatsFragment"
-            app:destination="@id/EasyStatsFragment" />
+            app:destination="@id/EasyStatsFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left" />
         <action
             android:id="@+id/action_OptionsFragment_to_MediumStatsFragment"
-            app:destination="@id/MediumStatsFragment" />
+            app:destination="@id/MediumStatsFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left" />
         <action
             android:id="@+id/action_OptionsFragment_to_HardStatsFragment"
-            app:destination="@id/HardStatsFragment" />
+            app:destination="@id/HardStatsFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left" />
     </fragment>
     <fragment
         android:id="@+id/EasyStatsFragment"
@@ -29,7 +35,9 @@
 
         <action
             android:id="@+id/action_EasyStatsFragment_to_OptionsFragment"
-            app:destination="@id/OptionsFragment" />
+            app:destination="@id/OptionsFragment"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@anim/exit_to_right" />
     </fragment>
 
     <fragment
@@ -40,7 +48,9 @@
 
         <action
             android:id="@+id/action_MediumStatsFragment_to_OptionsFragment"
-            app:destination="@id/OptionsFragment" />
+            app:destination="@id/OptionsFragment"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@anim/exit_to_right" />
     </fragment>
 
     <fragment
@@ -51,6 +61,8 @@
 
         <action
             android:id="@+id/action_HardStatsFragment_to_OptionsFragment"
-            app:destination="@id/OptionsFragment" />
+            app:destination="@id/OptionsFragment"
+            app:enterAnim="@anim/enter_from_left"
+            app:exitAnim="@anim/exit_to_right" />
     </fragment>
 </navigation>

@@ -61,6 +61,7 @@ public class EasyStatsFragment extends Fragment {
             Intent intent = new Intent(getContext(), SudokuActivity.class);
             intent.putExtra(SudokuActivity.sudokuExtra, difficulty);
             startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
         if(MainActivity.user.checkSudokuGame(difficulty)){
             buttonContinueGame.setVisibility(View.VISIBLE);
@@ -69,6 +70,7 @@ public class EasyStatsFragment extends Fragment {
             Intent intent = new Intent(getContext(), SudokuActivity.class);
             intent.putExtra(SudokuActivity.sudokuExtra, difficulty);
             startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
     }
 

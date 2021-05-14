@@ -24,15 +24,17 @@ public class StatsActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Log.d(TAG, "onCreate: asd");
         difficultyString = intent.getStringExtra(statsExtra);
+        intent.removeExtra(statsExtra);
         Log.d(TAG, "onCreate: "+difficultyString);
         NavHostFragment navHost = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavController navController = navHost.getNavController();
+        int currentDestination = navController.getCurrentDestination().getId();
         if(difficultyString != null) {
-            if(difficultyString.equals("Easy")){
+            if(difficultyString.equals("Easy") && currentDestination != R.id.EasyStatsFragment){
                 navController.navigate(R.id.action_OptionsFragment_to_EasyStatsFragment);
-            } else if(difficultyString.equals("Medium")){
+            } else if(difficultyString.equals("Medium") && currentDestination != R.id.MediumStatsFragment){
                 navController.navigate(R.id.action_OptionsFragment_to_MediumStatsFragment);
-            } else {
+            } else if(difficultyString.equals("Hard") && currentDestination != R.id.HardStatsFragment){
                 navController.navigate(R.id.action_OptionsFragment_to_HardStatsFragment);
             }
         }

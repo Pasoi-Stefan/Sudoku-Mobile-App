@@ -123,6 +123,7 @@ public class OptionsFragment extends Fragment {
         buttonChallenge.setOnClickListener(view1 -> {
             Intent intent = new Intent(getContext(), ChallengeActivity.class);
             startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.enter_from_right, R.anim.exit_to_left);
         });
 
         view.findViewById(R.id.button_easy).setOnClickListener(view1 -> NavHostFragment.findNavController(OptionsFragment.this)
@@ -135,6 +136,7 @@ public class OptionsFragment extends Fragment {
         view.findViewById(R.id.button_back_main).setOnClickListener(view1 ->{
             Intent intent = new Intent(getContext(), MainActivity.class);
             startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
         });
     }
 

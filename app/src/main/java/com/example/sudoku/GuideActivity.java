@@ -47,10 +47,12 @@ public class GuideActivity extends AppCompatActivity {
             if (origin.equals("Main")) {
                 intent1 = new Intent(GuideActivity.this, MainActivity.class);
                 startActivity(intent1);
+                overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
             } else {
                     intent1 = new Intent(GuideActivity.this, SudokuActivity.class);
                     intent1.putExtra(SudokuActivity.sudokuExtra, origin);
                     startActivity(intent1);
+                    overridePendingTransition(R.anim.enter_from_left, R.anim.exit_to_right);
             }
 
         });
